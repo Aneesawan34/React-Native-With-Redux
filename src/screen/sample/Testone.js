@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
+import {appActionFakeApi} from '../../Redux/Actions/Action';
 
 class Testone extends Component {
   render() {
@@ -44,7 +45,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    stateChange: () => dispatch({type: 'CHANGE_NAME', payload: 'Basit'}),
+    stateChange: () => dispatch(appActionFakeApi()),
   };
 };
 

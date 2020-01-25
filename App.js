@@ -17,9 +17,11 @@ import {
 } from 'react-native';
 import Stacknavigator from './src/screen/Stacknavigator';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import {reducer} from './src/Redux/Reducer';
-const store = createStore(reducer);
+import {createStore, applyMiddleware, compose} from 'redux';
+import thunk from 'redux-thunk';
+import {reducer} from './src/Redux/Reducers/Reducer';
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 class App extends Component {
   render() {
