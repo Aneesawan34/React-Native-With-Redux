@@ -17,17 +17,16 @@ import {
 } from 'react-native';
 import Stacknavigator from './src/screen/Stacknavigator';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware, compose} from 'redux';
-import thunk from 'redux-thunk';
-import {reducer} from './src/Redux/Reducers/Reducer';
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+import {store, persister} from './src/Redux/Store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Stacknavigator />
+        <PersistGate loading={null} persistor={persister}>
+          <Stacknavigator />
+        </PersistGate>
       </Provider>
     );
   }
